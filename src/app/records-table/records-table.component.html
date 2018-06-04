@@ -1,0 +1,28 @@
+<div class="col s12">
+  <div class="card-panel">
+    <span class="card-title left">Records table</span>
+    <div class="right settings-row">
+      <a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
+    </div>
+    <table class="bordered">
+      <thead>
+        <tr>
+          <th><input type="checkbox" class="filled-in table-checkbox" (click)="selectAllRecords()" id="l_otc_all"/><label for="l_otc_all"></label></th>
+          <th>Date</th>
+          <th>Project</th>
+          <th>Note</th>
+          <th width="40px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of records">
+          <td><input type="checkbox" ngModel="item.checked" class="filled-in table-checkbox" id="l_otc_{{item.id}}"/><label for="l_otc_{{item.id}}"></label></td>
+          <td>{{getBeautyDate(item.date)}}</td>
+          <td>{{getProjectById(item.project).name}}</td>
+          <td>{{item.note}}</td>
+          <td><a class="btn-floating waves-effect waves-light"><i class="material-icons">more_vert</i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
