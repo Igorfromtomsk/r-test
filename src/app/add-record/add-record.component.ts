@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ProjectsService } from '../s_projects/projects.service';
-import { RecordsService } from '../s_records/records.service';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { ProjectsService } from '../services/projects.service';
+import { RecordsService } from '../services/records.service';
+import { MaterializeAction } from 'angular2-materialize';
 
 @Component({
   selector: 'app-add-record',
@@ -10,20 +11,18 @@ import { RecordsService } from '../s_records/records.service';
 })
 
 export class AddRecordComponent implements OnInit {
-  public date: string;
-  public note: string;
-  public project: string;
+  record = {};
+  dateActions = new EventEmitter<string|MaterializeAction>();
+  projects = this.projectService.get;
 
   @Input() modalActions;
 
   constructor(public projectService: ProjectsService, private recordsService: RecordsService) {}
 
-  projects = this.projectService.get;
-
   sendRecord() {
-    this.recordsService.setData({date: this.date, project: this.project, note: this.note});
-
+    this.recordsService.setData(this.record);
     this.modalActions.emit({action: 'modal', params: ['close']});
+    this.record = {};
   }
 
   ngOnInit() {

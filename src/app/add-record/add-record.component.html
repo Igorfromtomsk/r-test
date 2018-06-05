@@ -1,18 +1,23 @@
 <div class="modal-content">
   <h4>Modal Header</h4>
   <div class="input-field">
-    <input type="text" [(ngModel)]="date" value="" class="datepicker" placeholder="06.04.2018" />
+    <input name="date" [(ngModel)]="record.date"
+           materialize="pickadate"
+           [materializeActions]="dateActions"
+           [materializeParams]="[{format: 'mm.dd.yyyy', container: 'body', autoClose: true}]"
+           placeholder="06.04.2018"
+           type="text">
     <label>Date</label>
   </div>
   <div class="input-field">
-    <select [(ngModel)]="project" materialize="material_select">
+    <select [(ngModel)]="record.project" materialize="material_select">
       <option value="" disabled selected>Choose project</option>
       <option *ngFor="let project of projects" value="{{project.id}}">{{project.name}}</option>
     </select>
     <label>Project</label>
   </div>
   <div class="input-field">
-    <textarea [(ngModel)]="note" class="materialize-textarea" placeholder="Your record note"></textarea>
+    <textarea [(ngModel)]="record.note" class="materialize-textarea" placeholder="Your record note"></textarea>
     <label>Note</label>
   </div>
   <div class="input-field center-align">

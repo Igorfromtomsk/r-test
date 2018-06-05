@@ -8,7 +8,7 @@ import {RecordsTableComponent} from './records-table/records-table.component';
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import {RecordsService} from './s_records/records.service';
+import {RecordsService} from './services/records.service';
 
 @NgModule({
   declarations: [AppComponent, AddRecordComponent, RecordsTableComponent],
