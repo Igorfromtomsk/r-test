@@ -1,24 +1,21 @@
-<div class="col s4">
-  <div class="card-panel">
-    <span class="card-title">Add new record</span>
-    <div class="input-field">
-      <input type="text" class="datepicker" placeholder="06.04.2018">
-      <label>Date</label>
-    </div>
-    <div class="input-field">
-      <select materialize="material_select">
-        <option value="" disabled selected>Choose project</option>
-        <option value="1">First</option>
-        <option value="2">Second</option>
-      </select>
-      <label>Project</label>
-    </div>
-    <div class="input-field">
-      <textarea class="materialize-textarea" placeholder="Your record note"></textarea>
-      <label>Note</label>
-    </div>
-    <div class="input-field center-align">
-      <button class="btn">Done</button>
-    </div>
+<div class="modal-content">
+  <h4>Modal Header</h4>
+  <div class="input-field">
+    <input type="text" [(ngModel)]="date" value="" class="datepicker" placeholder="06.04.2018" />
+    <label>Date</label>
+  </div>
+  <div class="input-field">
+    <select [(ngModel)]="project" materialize="material_select">
+      <option value="" disabled selected>Choose project</option>
+      <option *ngFor="let project of projects" value="{{project.id}}">{{project.name}}</option>
+    </select>
+    <label>Project</label>
+  </div>
+  <div class="input-field">
+    <textarea [(ngModel)]="note" class="materialize-textarea" placeholder="Your record note"></textarea>
+    <label>Note</label>
+  </div>
+  <div class="input-field center-align">
+    <button class="btn" (click)="sendRecord()">Done</button>
   </div>
 </div>

@@ -2,12 +2,13 @@
   <div class="card-panel">
     <span class="card-title left">Records table</span>
     <div class="right settings-row">
-      <a class="btn-floating waves-effect waves-light red"><i class="material-icons">delete</i></a>
+      <a class="btn-floating waves-effect waves-light red" *ngIf="showDelete" (click)="deleteRecords()"><i class="material-icons">delete</i></a>
+      <a class="btn-floating waves-effect waves-light" (click)="openModal()"><i class="material-icons left">add</i></a>
     </div>
     <table class="bordered">
       <thead>
         <tr>
-          <th><input type="checkbox" class="filled-in table-checkbox" (click)="selectAllRecords()" id="l_otc_all"/><label for="l_otc_all"></label></th>
+          <th><input type="checkbox" [checked]="allRecordsIsSelected" (change)="selectAllRecords()" class="filled-in table-checkbox" id="l_otc_all"/><label for="l_otc_all"></label></th>
           <th>Date</th>
           <th>Project</th>
           <th>Note</th>
@@ -16,7 +17,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of records">
-          <td><input type="checkbox" ngModel="item.checked" class="filled-in table-checkbox" id="l_otc_{{item.id}}"/><label for="l_otc_{{item.id}}"></label></td>
+          <td><input type="checkbox" [checked]="item.checked" class="filled-in table-checkbox" (change)="selectRecord(item)" id="l_otc_{{item.id}}"/><label for="l_otc_{{item.id}}"></label></td>
           <td>{{getBeautyDate(item.date)}}</td>
           <td>{{getProjectById(item.project).name}}</td>
           <td>{{item.note}}</td>
@@ -25,4 +26,8 @@
       </tbody>
     </table>
   </div>
+</div>
+
+<div id="js_add_product" class="modal add-record-modal" materialize="modal" [materializeParams]="[{dismissible: true}]" [materializeActions]="modalActions">
+  <app-add-record [modalActions]="modalActions"></app-add-record>
 </div>
