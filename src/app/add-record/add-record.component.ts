@@ -11,7 +11,7 @@ import { MaterializeAction } from 'angular2-materialize';
 })
 
 export class AddRecordComponent implements OnInit {
-  record = {};
+  record = {date: '', project: '', note: ''};
   dateActions = new EventEmitter<string|MaterializeAction>();
   projects = this.projectService.get;
 
@@ -22,7 +22,7 @@ export class AddRecordComponent implements OnInit {
   sendRecord() {
     this.recordsService.setData(this.record);
     this.modalActions.emit({action: 'modal', params: ['close']});
-    this.record = {};
+    this.record = {date: '', project: '', note: ''};
   }
 
   ngOnInit() {

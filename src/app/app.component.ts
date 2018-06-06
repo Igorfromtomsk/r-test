@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as M from 'materialize-css/dist/js/materialize';
+import { RecordsTableComponent } from './records-table/records-table.component';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,5 @@ import * as M from 'materialize-css/dist/js/materialize';
 })
 
 export class AppComponent {
-  title = 'app';
+  title = 'r-test';
 }

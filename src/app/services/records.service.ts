@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs';
 
 @Injectable({
@@ -31,7 +30,7 @@ export class RecordsService {
     {'id': 20, 'date': '01-19-2018', 'project': 19, 'note': 'Nothing to say' },
   ];
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.subject.next(this.data);
   }
 
@@ -40,7 +39,7 @@ export class RecordsService {
   }
 
   public setData(data: any) {
-    data.id = this.data.length + 1; //should come from backend
+    data.id = this.data.length + 1; // should come from backend
     this.data.push(data);
     this.subject.next(this.data);
   }

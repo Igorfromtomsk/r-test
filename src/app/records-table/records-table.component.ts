@@ -3,10 +3,11 @@ import { ProjectsService } from '../services/projects.service';
 import { RecordsService } from '../services/records.service';
 import { PagerService } from '../services/pager.service';
 import { MaterializeAction } from 'angular2-materialize';
+import { AddRecordComponent } from '../add-record/add-record.component';
 
 @Component({
   selector: 'app-records-table',
-  providers: [],
+  providers: [RecordsService, PagerService, ProjectsService],
   templateUrl: './records-table.component.html',
   styleUrls: ['./records-table.component.less']
 })
@@ -65,7 +66,7 @@ export class RecordsTableComponent implements OnInit {
     }
   }
   deleteRecords() {
-    let toDelete = this.pagedRecords
+    const toDelete = this.pagedRecords
       .filter(item => item.checked)
       .map(item => item.id);
 
@@ -80,7 +81,7 @@ export class RecordsTableComponent implements OnInit {
     this.modalActions.emit({action: 'modal', params: ['open']});
   }
 
-  sort(type:string) {
+  sort(type: string) {
     if (this.sortedColumn.type === type) {
       if (this.sortedColumn.direction === 'asc') {
         this.sortedColumn.direction = 'desc';
@@ -91,9 +92,9 @@ export class RecordsTableComponent implements OnInit {
 
     switch (type) {
       case 'date':
-        this.records.sort((n1,n2) => {
-          let t1 = new Date(n1.date).getTime();
-          let t2 = new Date(n2.date).getTime();
+        this.records.sort((n1, n2) => {
+          const t1 = new Date(n1.date).getTime();
+          const t2 = new Date(n2.date).getTime();
 
           if (this.sortedColumn.direction === 'asc') {
             return t2 - t1;
@@ -103,7 +104,7 @@ export class RecordsTableComponent implements OnInit {
         });
         break;
       case 'project':
-        this.records.sort((n1,n2) => {
+        this.records.sort((n1, n2) => {
           if (this.sortedColumn.direction === 'asc') {
             if (this.getProjectById(n1.project).name[0] < this.getProjectById(n2.project).name[0]) {
               return 1;
@@ -120,7 +121,7 @@ export class RecordsTableComponent implements OnInit {
         });
         break;
       case 'note':
-        this.records.sort((n1,n2) => {
+        this.records.sort((n1, n2) => {
           if (this.sortedColumn.direction === 'asc') {
             if (n1.note[0] < n2.note[0]) {
               return 1;

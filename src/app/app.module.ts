@@ -1,20 +1,22 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {AddRecordComponent} from './add-record/add-record.component';
 import {MaterializeModule} from 'angular2-materialize';
-import {RecordsTableComponent} from './records-table/records-table.component';
 
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RecordsService} from './services/records.service';
+import {ProjectsService} from './services/projects.service';
+import {AddRecordComponent} from './add-record/add-record.component';
+import {RecordsTableComponent} from './records-table/records-table.component';
 
 @NgModule({
   declarations: [AppComponent, AddRecordComponent, RecordsTableComponent],
-  imports:      [BrowserModule, MaterializeModule, HttpClientModule, FormsModule],
-  providers:    [RecordsService, RecordsService],
-  bootstrap:    [AppComponent]
+  imports:      [BrowserModule, MaterializeModule, HttpClientModule, FormsModule, ReactiveFormsModule],
+  providers:    [RecordsService, ProjectsService],
+  bootstrap:    [AppComponent],
+  schemas:      [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class AppModule {
 }
